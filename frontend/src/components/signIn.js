@@ -33,13 +33,14 @@ function SignIn(props) {
 
   return (
     <div class="container rounded bg-white mt-5">
-      <form>
+      <form >
         <div className="form-outline mb-4">
           <input
             ref={emailRef}
             type="email"
             id="form2Example1"
             className="form-control"
+            autoComplete="off"
           />
           <label className="form-label" htmlFor="form2Example1">
             Email address
@@ -52,6 +53,9 @@ function SignIn(props) {
             type="password"
             id="form2Example2"
             className="form-control"
+            autoComplete="off"
+            maxLength={10}
+            minLength={6}
           />
           <label className="form-label" htmlFor="form2Example2">
             Password

@@ -4,9 +4,8 @@ import { UserContext } from "../App";
 export default function Profile() {
   const passwordRef = useRef();
   const emailRef = useRef();
-  const phoneNumberRef = useRef();
   const nameRef = useRef();
-  const { auth, user, changeEmail, changePassword, changeProfile } =
+  const { currentUser, changeEmail, changePassword, changeProfile } =
     useContext(UserContext);
 
   function handleEmailUpdate(e) {
@@ -56,12 +55,17 @@ export default function Profile() {
   }
 
   return (
+    
     <div class="container rounded bg-white mt-5">
       <div class="row">
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-            <span class="text-black-50">Name: </span>
-            <span class="text-black-50">Email: </span>
+            <span class="text-black-50">
+              Name: {currentUser ? currentUser.displayName : <p>Retrieving</p>}
+            </span>
+            <span class="text-black-50">
+              Email: {currentUser ? currentUser.email : <p>Retrieving</p>}
+            </span>
           </div>
         </div>
         <div class="col-md-8">
@@ -76,9 +80,10 @@ export default function Profile() {
                   class="form-control"
                   placeholder="New Name"
                   ref={nameRef}
+                  autoComplete="off"
                 />
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <button
                   class="btn btn-primary profile-button"
                   type="submit"
@@ -95,9 +100,10 @@ export default function Profile() {
                   type="email"
                   class="form-control"
                   placeholder="New Email"
+                  autoComplete="off"
                 />
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <button
                   class="btn btn-primary profile-button"
                   type="submit"
@@ -114,9 +120,12 @@ export default function Profile() {
                   type="password"
                   class="form-control"
                   placeholder="New Password"
+                  autoComplete="off"
+                  maxLength={10}
+                  minLength={6}
                 />
               </div>
-              <div class="col-md-6">
+              <div class="col-md-3">
                 <button
                   class="btn btn-primary profile-button"
                   type="submit"

@@ -45,6 +45,7 @@ export default function SignUp(props) {
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            autoComplete="off"
           />
         </div>
         <div className="form-group">
@@ -56,6 +57,8 @@ export default function SignUp(props) {
             id="exampleInputPassword1"
             placeholder="Password"
             maxLength={10}
+            minLength={6}
+            autoComplete="off"
           />
         </div>
         <button
